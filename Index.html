@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin Augusto Jiménez Díaz — Currículum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B1220;
+    --panel: #111C33;
+    --panel-2: #0E1729;
+    --line: #24324F;
+    --accent: #5EEAD4;
+    --accent-dim: rgba(94,234,212,0.15);
+    --amber: #F5A623;
+    --amber-dim: rgba(245,166,35,0.15);
+    --text: #E7ECF5;
+    --muted: #8291AC;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 600px at 85% -10%, rgba(94,234,212,0.08), transparent 60%),
+      radial-gradient(900px 500px at -10% 20%, rgba(245,166,35,0.05), transparent 55%),
+      var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 64px 28px 100px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    display: grid;
+    grid-template-columns: 168px 1fr;
+    gap: 36px;
+    align-items: center;
+    padding-bottom: 44px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 56px;
+  }
+
+  .photo-frame{
+    position: relative;
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    border: 2px dashed var(--line);
+    background: var(--panel);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color .2s ease;
+    flex-shrink: 0;
+  }
+  .photo-frame:hover{ border-color: var(--accent); }
+  .photo-frame img{
+    width: 100%; height: 100%; object-fit: cover; display: none;
+  }
+  .photo-frame.has-photo{ border-style: solid; }
+  .photo-frame.has-photo img{ display: block; }
+  .photo-frame.has-photo .photo-placeholder{ display: none; }
+
+  .photo-placeholder{
+    text-align: center;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 0 18px;
+    letter-spacing: .02em;
+  }
+  .photo-placeholder svg{ margin-bottom: 6px; opacity: .6; }
+  #photoInput{ display:none; }
+
+  .hero-text .eyebrow{
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-size: 12.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+  }
+  .hero-text h1{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 4.2vw, 38px);
+    font-weight: 700;
+    margin: 0 0 8px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .hero-text .role{
+    color: var(--muted);
+    font-size: 16px;
+    margin: 0 0 16px;
+  }
+  .hero-meta{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+  .hero-meta span{ display:flex; align-items:center; gap:6px; }
+  .hero-meta .dot{ width:5px; height:5px; border-radius:50%; background: var(--accent); flex-shrink:0; }
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{ margin-bottom: 52px; }
+  .sec-head{
+    display:flex; align-items:baseline; gap:12px;
+    margin-bottom: 26px;
+  }
+  .sec-head .idx{
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--amber);
+    font-size: 13px;
+  }
+  .sec-head h2{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .sec-head::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background: var(--line);
+  }
+
+  .summary p{
+    color: var(--text);
+    font-size: 15px;
+    max-width: 640px;
+    color: #C4CDE0;
+  }
+
+  /* ---------- SKILLS ---------- */
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--text);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    padding: 7px 13px;
+    border-radius: 6px;
+  }
+
+  /* ---------- CIRCUIT TIMELINE ---------- */
+  .timeline{
+    position: relative;
+    padding-left: 30px;
+  }
+  .timeline::before{
+    content:"";
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--line) 0, var(--line) 6px,
+      transparent 6px, transparent 10px
+    );
+  }
+
+  .t-item{
+    position: relative;
+    padding-bottom: 40px;
+  }
+  .t-item:last-child{ padding-bottom: 0; }
+
+  .t-node{
+    position: absolute;
+    left: -30px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-dim);
+  }
+  .t-item.cert .t-node{
+    border-color: var(--amber);
+    box-shadow: 0 0 0 4px var(--amber-dim);
+  }
+  .t-node::before{
+    content:"";
+    position:absolute;
+    left: 12px;
+    top: 4px;
+    width: 18px;
+    height: 2px;
+    background: var(--line);
+  }
+
+  .t-date{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    color: var(--accent);
+    letter-spacing: .04em;
+    margin: 0 0 6px;
+  }
+  .t-item.cert .t-date{ color: var(--amber); }
+
+  .t-card{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .t-card h3{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16.5px;
+    margin: 0 0 4px;
+    font-weight: 600;
+  }
+  .t-card .org{
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  .t-card p.desc{
+    font-size: 13.5px;
+    color: #B7C1D6;
+    margin: 0;
+  }
+  .tag-type{
+    display:inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .t-item.cert .tag-type{ background: var(--amber); }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+    gap: 16px;
+  }
+  .contact-card{
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .contact-card .label{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 6px;
+  }
+  .contact-card .value{ font-size: 14px; color: var(--text); }
+
+  footer{
+    margin-top: 60px;
+    text-align:center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 560px){
+    .hero{ grid-template-columns: 1fr; text-align:center; justify-items:center; }
+    .hero-meta{ justify-content:center; }
+    .sec-head h2{ font-size: 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="photo-frame" id="photoFrame" title="Haz clic para agregar tu foto">
+      <img id="photoImg" src="" alt="Foto de perfil">
+      <div class="photo-placeholder">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8291AC" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/></svg>
+        <div>Agregar<br>foto</div>
+      </div>
+      <input type="file" id="photoInput" accept="image/*">
+    </div>
+    <div class="hero-text">
+      <p class="eyebrow">Currículum · Ingeniería Informática</p>
+      <h1>Kevin Augusto Jiménez Díaz</h1>
+      <p class="role">Ingeniero Informático</p>
+      <div class="hero-meta">
+        <span><span class="dot"></span>Puebla, México</span>
+        <span><span class="dot"></span>kevin.jimenez.diaz@example.com</span>
+        <span><span class="dot"></span>+52 222 000 0000</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- PERFIL -->
+  <section class="summary">
+    <div class="sec-head"><span class="idx">§1</span><h2>Perfil</h2></div>
+    <p>Ingeniero Informático recién graduado, con formación en desarrollo de software, redes y gobernanza de TI. Interesado en infraestructura de redes y en la aplicación práctica de la inteligencia artificial dentro de flujos de trabajo técnicos. Busco seguir construyendo experiencia en proyectos que combinen buenas prácticas de desarrollo con soluciones de red confiables.</p>
+  </section>
+
+  <!-- HABILIDADES -->
+  <section>
+    <div class="sec-head"><span class="idx">§2</span><h2>Habilidades técnicas</h2></div>
+    <div class="chips">
+      <span class="chip">Redes y Cisco Packet Tracer</span>
+      <span class="chip">Programación (Java, Python)</span>
+      <span class="chip">Bases de datos SQL</span>
+      <span class="chip">Desarrollo web</span>
+      <span class="chip">Auditoría y gobernanza de TI</span>
+      <span class="chip">Herramientas de IA aplicada</span>
+      <span class="chip">Control de versiones (Git)</span>
+      <span class="chip">Metodologías ágiles</span>
+    </div>
+  </section>
+
+  <!-- TRAYECTORIA (timeline) -->
+  <section>
+    <div class="sec-head"><span class="idx">§3</span><h2>Trayectoria académica y certificaciones</h2></div>
+    <div class="timeline">
+
+      <div class="t-item">
+        <div class="t-node"></div>
+        <p class="t-date">28 AGO 2026</p>
+        <div class="t-card">
+          <span class="tag-type">Título</span>
+          <h3>Ingeniería en Informática</h3>
+          <p class="org">Universidad de la Mixteca, Acatlán de Osorio, Puebla</p>
+          <p class="desc">Titulación como Ingeniero Informático, con enfoque en desarrollo de software, redes y calidad de servicios de TI.</p>
+        </div>
+      </div>
+
+      <div class="t-item cert">
+        <div class="t-node"></div>
+        <p class="t-date">14 SEP 2026</p>
+        <div class="t-card">
+          <span class="tag-type">Certificación</span>
+          <h3>Cisco Packet Tracer — Fundamentos de Redes</h3>
+          <p class="org">Cisco Networking Academy</p>
+          <p class="desc">Certificación en simulación y diseño de redes, configuración de dispositivos y resolución de fallas mediante Cisco Packet Tracer.</p>
+        </div>
+      </div>
+
+      <div class="t-item cert">
+        <div class="t-node"></div>
+        <p class="t-date">02 NOV 2026</p>
+        <div class="t-card">
+          <span class="tag-type">Certificación</span>
+          <h3>Inteligencia Artificial Aplicada</h3>
+          <p class="org">Instituto de Formación Tecnológica en IA</p>
+          <p class="desc">Certificación en el uso práctico de herramientas de inteligencia artificial para automatización, análisis de datos y apoyo al desarrollo de software.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section>
+    <div class="sec-head"><span class="idx">§4</span><h2>Contacto</h2></div>
+    <div class="contact-grid">
+      <div class="contact-card"><div class="label">Correo</div><div class="value">kevin.jimenez.diaz@example.com</div></div>
+      <div class="contact-card"><div class="label">Teléfono</div><div class="value">+52 222 000 0000</div></div>
+      <div class="contact-card"><div class="label">Ubicación</div><div class="value">Puebla, México</div></div>
+      <div class="contact-card"><div class="label">LinkedIn</div><div class="value">linkedin.com/in/kevinjimenezdiaz</div></div>
+    </div>
+  </section>
+
+  <footer>Documento generado con fines de práctica — datos ficticios.</footer>
+</div>
+
+<script>
+  const frame = document.getElementById('photoFrame');
+  const input = document.getElementById('photoInput');
+  const img = document.getElementById('photoImg');
+
+  frame.addEventListener('click', () => input.click());
+  input.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      img.src = ev.target.result;
+      frame.classList.add('has-photo');
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
+</body>
+</html>
